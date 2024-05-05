@@ -1,0 +1,104 @@
+// First part, contract implementation for medical supply DApps - Primera parte del contrato para suministro medico.
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract MedicamentoTracker {
+    struct Usuario {
+        string gmail;
+        uint8 edad;
+        string sexo;
+        string nombre;
+        string apellido;
+        string intereses;
+        address clavePrivada;
+        address clavePublica;
+    }
+    
+    struct Medicamento {
+        string nombre;
+        string fichaTecnica;
+        address creador;
+        string ubicacionGPS;
+    }
+    
+    // Mapas de almacenamiento - Storage maps
+    mapping(address => Usuario) public usuarios;
+    mapping(address => Medicamento[]) public medicamentos;
+    
+    // Eventos
+    event UsuarioCreado(address indexed usuario);
+    event UsuarioEliminado(address indexed usuario);
+    event MedicamentoAgregado(address indexed usuario, string nombre);
+    
+    // Función para crear un nuevo usuario - New Users
+    function crearUsuario(
+        string memory _gmail,
+        uint8 _edad,
+        string memory _sexo,
+        string memory _nombre,
+        string memory _apellido,
+        string memory _intereses,
+        address _clavePrivada,
+        address _clavePublica
+    ) public {
+        require(bytes(_gmail).length > 0, "El Gmail es requerido.");
+        require(_edad > 0, "La edad debe ser mayor a 0.");
+        require(bytes(_nombre).length > 0, "El nombre es requerido.");
+        require(bytes(_apellido).length > 0, "El apellido es requerido.");
+        require(bytes(_sexo).length > 0, "El sexo es requerido.");
+        require(_clavePrivada != address(0) && _clavePublica != address(0), "Las claves no deben ser nulas.");
+        
+        // Crear un nuevo usuario - creation user
+        usuarios[msg.sender] = Usuario({
+            gmail: _gmail,
+            edad: _edad,
+            sexo: _sexo,
+            nombre: _nombre,
+            apellido: _apellido,
+            intereses: _intereses,
+            clavePrivada: _clavePrivada,
+            clavePublica: _clavePublica
+        });
+        
+        emit UsuarioCreado(msg.sender);
+    }
+    
+    // Función para eliminar un usuario - delete user
+    function eliminarUsuario() public {
+        require(usuarios[msg.sender].edad > 0, "El usuario no existe.");
+        
+        // Eliminar al usuario
+        delete usuarios[msg.sender];
+        
+        emit UsuarioEliminado(msg.sender);
+    }
+    
+    // Función para agregar un medicamento - add medicine
+    function agregarMedicamento(
+        string memory _nombre,
+        string memory _fichaTecnica,
+        address _creador,
+        string memory _ubicacionGPS
+    ) public {
+        require(bytes(_nombre).length > 0, "El nombre del medicamento es requerido.");
+        require(bytes(_fichaTecnica).length > 0, "La ficha técnica es requerida.");
+        require(bytes(_ubicacionGPS).length > 0, "La ubicación GPS es requerida.");
+        require(_creador != address(0), "El creador no debe ser nulo.");
+        
+        Medicamento memory nuevoMedicamento = Medicamento({
+            nombre: _nombre,
+            fichaTecnica: _fichaTecnica,
+            creador: _creador,
+            ubicacionGPS: _ubicacionGPS
+        });
+        
+        medicamentos[msg.sender].push(nuevoMedicamento);
+        
+        emit MedicamentoAgregado(msg.sender, _nombre);
+    }
+    
+    // Función para obtener la lista de medicamentos de un usuario - stocking list
+    function obtenerMedicamentos(address _usuario) public view returns (Medicamento[] memory) {
+        return medicamentos[_usuario];
+    }
+}
