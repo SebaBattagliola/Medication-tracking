@@ -48,7 +48,7 @@ contract MedicamentoTracker {
         require(bytes(_sexo).length > 0, "El sexo es requerido.");
         require(_clavePrivada != address(0) && _clavePublica != address(0), "Las claves no deben ser nulas.");
         
-        // Crear un nuevo usuario - creation user
+        // Crear un nuevo usuario - creation user new
         usuarios[msg.sender] = Usuario({
             gmail: _gmail,
             edad: _edad,
