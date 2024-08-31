@@ -1,0 +1,1 @@
+Medication tracking es un proyecto DAPPs para monitorear la distribución y gestión de medicina compleja, de esta manera otorga confiabilidad a la calidad en que se crea y entrega el medicamento, con altas posibilidades de escalabilidad y control subjetivo de los laboratorios.
