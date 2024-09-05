@@ -78,4 +78,4 @@ Expansión Geográfica: Implementar la solución en diferentes regiones, adaptan
 Innovación Continua: Mantenerse al día con las últimas innovaciones en blockchain y IoT para mejorar continuamente la plataforma.
 
 Conclusión:
-El proyecto "Distribución de Fármacos Descentralizada (DAAPs)" representa una solución avanzada y segura para el seguimiento y distribución de fármacos. Al aprovechar la tecnología blockchain y los smart contracts, la plataforma garantiza la calidad y confiabilidad del proceso de distribución, ofreciendo una experiencia transparente y segura tanto para laboratorios como para usuarios finales, aportando una total escalabilidad en materia de calidad farmacologica.
+El proyecto "Distribución de Fármacos Descentralizada (DAAPs)" representa una solución avanzada y segura para el seguimiento y distribución de fármacos. Al aprovechar la tecnología blockchain y los smart contracts, la plataforma garantiza la calidad y confiabilidad del proceso de distribución, ofreciendo una experiencia transparente y segura tanto para laboratorios como para usuarios finales, aportando una total escalabilidad en materia de calidad farmacologica para el consumo.
